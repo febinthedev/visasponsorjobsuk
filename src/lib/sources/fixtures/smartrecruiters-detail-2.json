@@ -1,0 +1,187 @@
+{
+ "id": "744000161788782",
+ "name": "Senior Software Engineer I - Servicing Platform",
+ "uuid": "d3ac272d-d03e-4c9e-8d7c-655e42a2ac60",
+ "jobId": "a550b67a-e97e-4804-8a7d-c1723297bed3",
+ "jobAdId": "6af0ddae-dbe1-4c5d-838a-dc686911a3ea",
+ "defaultJobAd": true,
+ "refNumber": "R7728",
+ "company": {
+  "name": "Wise",
+  "identifier": "Wise"
+ },
+ "location": {
+  "city": "London",
+  "country": "gb",
+  "address": "Worship Square, 65 Clifton Street",
+  "postalCode": "EC2A 4JE",
+  "remote": false,
+  "hybrid": true,
+  "fullLocation": "London, , United Kingdom"
+ },
+ "customField": [
+  {
+   "fieldId": "65d3d0e0d37044292ef9549b",
+   "fieldLabel": "Job Profile",
+   "valueId": "3f386664840b1000a1193fad61560002",
+   "valueLabel": "Engineer IC3 - JP101092"
+  },
+  {
+   "fieldId": "65cea5ac287e8d0651481809",
+   "fieldLabel": "Time Type",
+   "valueId": "d2f4dafccd5101059b6cf09e12278400",
+   "valueLabel": "Full time"
+  },
+  {
+   "fieldId": "65d3d06b2865b46cfa4f0ec3",
+   "fieldLabel": "Worker Sub Type",
+   "valueId": "046034784a4d016f1889ba8863278f0d",
+   "valueLabel": "Permanent"
+  },
+  {
+   "fieldId": "65d3d141c86c2f3257de414c",
+   "fieldLabel": "Cost Center Hierarchy",
+   "valueId": "6d8f1bd75a7001b7185a4531c7125d1c",
+   "valueLabel": "Engineering"
+  },
+  {
+   "fieldId": "65d3d1796435ba43bdb089ad",
+   "fieldLabel": "Squad",
+   "valueId": "c23f18fabbcf1001b6ff5b7966ea0000",
+   "valueLabel": "Servicing Platform (Squad)"
+  },
+  {
+   "fieldId": "658553f79a81b00900831a80",
+   "fieldLabel": "Brands",
+   "valueId": "default",
+   "valueLabel": "Wise"
+  },
+  {
+   "fieldId": "65d3d0374c34974b271801f9",
+   "fieldLabel": "Management Level",
+   "valueId": "e82698b941950185dfe774d4f100d610",
+   "valueLabel": "5"
+  },
+  {
+   "fieldId": "65d3d16de5ae4c7be012a87e",
+   "fieldLabel": "Tribe",
+   "valueId": "2508138664ba1001b6dc554b5aca0000",
+   "valueLabel": "Servicing (Tribe)"
+  },
+  {
+   "fieldId": "65d3d151a5d3185b4341a7ab",
+   "fieldLabel": "Cost Center",
+   "valueId": "79a91b8e77da1001aa035ac529260000",
+   "valueLabel": "Servicing (FinCrime)"
+  },
+  {
+   "fieldId": "697ecac4054e02cef8c7a2ce",
+   "fieldLabel": "ORGANIZATION_TYPE-3-84 L1",
+   "valueId": "1a996433adb41001d77f89dee2560000",
+   "valueLabel": "Wise Start"
+  },
+  {
+   "fieldId": "65d3d0a7d37044292ef9549a",
+   "fieldLabel": "Job Family",
+   "valueId": "e380f86fa0b2011d520d2e87bc004000",
+   "valueLabel": "Engineering"
+  },
+  {
+   "fieldId": "COUNTRY",
+   "fieldLabel": "Country/Region",
+   "valueId": "gb",
+   "valueLabel": "United Kingdom"
+  },
+  {
+   "fieldId": "65d3d05c735007771b14e932",
+   "fieldLabel": "Worker Type",
+   "valueId": "EE",
+   "valueLabel": "Wiser"
+  },
+  {
+   "fieldId": "65d90823f2e6436af25814c2",
+   "fieldLabel": "Job Ad Salary Range",
+   "valueLabel": "87500 - 111000 GBP Annual + RSUs"
+  },
+  {
+   "fieldId": "697ecac2a597b90c91f0575a",
+   "fieldLabel": "Matrix L1",
+   "valueId": "96f473f16f7a1001051277e92e010000",
+   "valueLabel": "APAC Regional Operations"
+  },
+  {
+   "fieldId": "65d3d0926435ba43bdb089ac",
+   "fieldLabel": "Job Family Group",
+   "valueId": "cf8ed98297e201fc81857d1fba008e14",
+   "valueLabel": "Technology"
+  },
+  {
+   "fieldId": "65cec407735007771b14e92d",
+   "fieldLabel": "Company",
+   "valueId": "046034784a4d01f4134f114764273117",
+   "valueLabel": "Wise Payments Limited"
+  },
+  {
+   "fieldId": "65d9080b4aa2f46927dfc1f3",
+   "fieldLabel": "WD Target Hire Date",
+   "valueLabel": "2026-04-24"
+  }
+ ],
+ "releasedDate": "2026-11-16T11:52:55.228Z",
+ "creator": {
+  "name": "",
+  "avatarUrl": ""
+ },
+ "postingUrl": "https://jobs.smartrecruiters.com/Wise/744000161788782-senior-software-engineer-i-servicing-platform",
+ "applyUrl": "https://jobs.smartrecruiters.com/Wise/744000161788782-senior-software-engineer-i-servicing-platform?oga=true",
+ "referralUrl": "https://jobs.smartrecruiters.com/external-referrals/company/Wise/publication/d3ac272d-d03e-4c9e-8d7c-655e42a2ac60?dcr_ci=Wise",
+ "jobAd": {
+  "sections": {
+   "companyDescription": {
+    "title": "Company Description",
+    "text": "<p>Wise is a global technology company, building the best way to move and manage the world’s money.<br>\n<strong>Min fees. Max ease. Full speed.</strong></p><p>Whether people and businesses are sending money to another country, spending abroad, or making and receiving international payments, Wise is on a mission to make their lives easier and save them money.</p><p>As part of our team, you will be helping us create an entirely new network for the world's money.<br>\n<strong>For everyone, everywhere.</strong></p><p>More about <strong><a href=\"https://wise.jobs/our-mission\" rel=\"noopener noreferrer\">our mission</a></strong> and <strong><a href=\"https://wise.jobs/what-we-offer\" rel=\"noopener noreferrer\">what we offer</a></strong>.</p>"
+   },
+   "jobDescription": {
+    "title": "Job Description",
+    "text": "<p><strong>About the role:</strong>&#xa0;</p><p>Join us as a Platform Engineer in the Risk Domain, where you'll build the systems that make safe, global products possible. As part of our Platform Engineering team, you'll be at the intersection of Product and Risk – crafting systems that allow internal teams to ship faster, safer, and smarter. You won't just be writing code. You'll be building foundational services that other teams rely on to launch features across global markets.</p><p><strong>How we work:</strong></p><p>You'll be joining a team that values autonomy, creativity, and collaboration. We're building a platform from the ground up, with the support and reach of a product org that ships globally. Your work won't just scale technology – it'll scale trust.</p><p><strong>What will you be working on?</strong></p><p>We're designing a centralized risk platform – a system that unifies data and decision-making across identity verification, fraud detection, compliance, and more. This platform acts as the connective tissue between teams working on money movement, regional expansion, and customer safety.</p><p>• <strong>Accelerate delivery:</strong> Enable product teams to launch faster with built-in risk tooling</p><p>• <strong>Empower risk teams:</strong> Give them the systems they need to assess, respond, and protect—without blocking development</p><p>• <strong>Drive real impact:</strong> Your work will directly reduce fraud, improve trust, and help us scale safely</p><p>&#xa0;</p>"
+   },
+   "qualifications": {
+    "title": "Qualifications",
+    "text": "<p><strong>What do you need?</strong></p><p>We are fully aware that it is uncommon for a candidate to have all skills required and we fully support everyone in learning new skills with us. So if you have some of those listed below and are eager to learn more we do want to hear from you!</p><ul><li><p>Strong proficiency in backend programming languages like Java, Python or Go.</p></li><li><p>Passion for building at scale – You've worked on high-throughput systems and know what it takes to keep services fast and reliable</p></li><li><p>Deep interest in system design – You think in terms of platforms, not just features</p></li><li><p>A desire to build meaningful infrastructure – You care about enabling others, not just shipping your own code</p></li><li><p>Excellent verbal and written communication skills, with the ability to convey technical concepts to both technical and non-technical audiences.</p></li></ul><p><strong>Nice to Have:</strong></p><ul><li>Experience working in fintech or high-trust domains like risk, identity, or compliance</li><li>Experience in messaging systems such as Kafka is a plus.</li></ul>"
+   },
+   "additionalInformation": {
+    "title": "Additional Information",
+    "text": "<p><strong>Interested? Find out more:</strong></p><ul><li><p><strong><a href=\"https://wise.jobs/how-we-work\" rel=\"noopener noreferrer\">How we work – a practical guide</a></strong></p></li><li><p><strong><a href=\"https://wise.jobs/diversity-equity-and-inclusion\" rel=\"noopener noreferrer\">DEI @ Wise</a></strong></p></li><li><p><strong><a href=\"https://medium.com/wise-engineering/wise-tech-stack-2025-update-d0e63fe718c7\" rel=\"noopener noreferrer\">Wise Tech Stack (2025 update)</a></strong></p></li><li><p><strong><a href=\"https://www.youtube.com/watch?v=XNMeFMoqBEA&amp;amp;feature=youtu.be\" rel=\"noopener noreferrer\">See what it's like to work at Wise London!</a></strong></p></li><li><p><strong><a href=\"https://wise.jobs/engineering-career-map\" rel=\"noopener noreferrer\">Our Engineering career map</a></strong></p></li><li><p><strong>Wise Engineering –<a href=\"https://medium.com/wise-engineering\" rel=\"noopener noreferrer\"> https://medium.com/wise-engineering</a></strong></p></li></ul><p><strong>What do we offer:&#xa0;</strong></p><ul><li><p><strong>Starting salary: 87K - 111K GBP + RSUs</strong></p></li><li><p><strong><a href=\"https://wise.jobs/what-we-offer\" rel=\"noopener noreferrer\">Wise Benefits</a></strong></p></li></ul><p><strong>#LI-AB3 #LI-Hybrid</strong></p><div sr-tagline=\"\"></div><p>For everyone, everywhere. We're people building money without borders&#xa0; — without judgement or prejudice, too. We believe teams are strongest when they are diverse, equitable and inclusive.</p><p>We're proud to have a truly international team, and we celebrate our differences.<br>\nInclusive teams help us live our values and make sure every Wiser feels respected, empowered to contribute towards our mission and able to progress in their careers.</p><p>If you want to find out more about what it's like to work at Wise visit&#xa0;<a href=\"https://www.wise.jobs/\" rel=\"noopener noreferrer\" target=\"_blank\">Wise.Jobs</a>.</p><p>Keep up to date with life at Wise by following us on&#xa0;<a href=\"https://www.linkedin.com/company/1769571/\" rel=\"noopener noreferrer\" target=\"_blank\">LinkedIn</a>&#xa0;and&#xa0;<a href=\"https://www.instagram.com/wisecareers/\" rel=\"noopener noreferrer\" target=\"_blank\">Instagram</a>.</p>"
+   }
+  }
+ },
+ "compensation": {
+  "min": 87000,
+  "max": 111000,
+  "currency": "GBP",
+  "period": "YEARLY"
+ },
+ "active": true,
+ "visibility": "PUBLIC",
+ "industry": {
+  "id": "financial_services",
+  "label": "Financial Services"
+ },
+ "function": {
+  "id": "engineering",
+  "label": "Engineering"
+ },
+ "experienceLevel": {
+  "id": "mid_senior_level",
+  "label": "Mid-Senior Level"
+ },
+ "typeOfEmployment": {
+  "id": "permanent",
+  "label": "Full-time"
+ },
+ "language": {
+  "code": "en",
+  "label": "English",
+  "labelNative": "English (US)"
+ }
+}

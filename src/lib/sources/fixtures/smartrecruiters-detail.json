@@ -1,0 +1,163 @@
+{
+ "id": "744000161866279",
+ "name": "Senior Product Designer - Scalable Growth",
+ "uuid": "18ddd458-7a25-4e7e-9f5f-015b1edeaa46",
+ "jobId": "8a6ef386-3649-444e-a50c-b4bb3eb6804e",
+ "jobAdId": "5c9e72cc-f0a8-45f8-a9d5-2ffbe7a93b39",
+ "defaultJobAd": true,
+ "refNumber": "R11228",
+ "company": {
+  "name": "Wise",
+  "identifier": "Wise"
+ },
+ "location": {
+  "city": "London",
+  "country": "gb",
+  "address": "Worship Square, 65 Clifton Street",
+  "postalCode": "EC2A 4JE",
+  "remote": false,
+  "hybrid": false,
+  "fullLocation": "London, , United Kingdom"
+ },
+ "customField": [
+  {
+   "fieldId": "65d3d0e0d37044292ef9549b",
+   "fieldLabel": "Job Profile",
+   "valueId": "031d60c1f3b201bb682ebeca9501310d",
+   "valueLabel": "Product Designer Senior - JP100519"
+  },
+  {
+   "fieldId": "65cea5ac287e8d0651481809",
+   "fieldLabel": "Time Type",
+   "valueId": "d2f4dafccd5101059b6cf09e12278400",
+   "valueLabel": "Full time"
+  },
+  {
+   "fieldId": "65d3d06b2865b46cfa4f0ec3",
+   "fieldLabel": "Worker Sub Type",
+   "valueId": "046034784a4d016f1889ba8863278f0d",
+   "valueLabel": "Permanent"
+  },
+  {
+   "fieldId": "65d3d141c86c2f3257de414c",
+   "fieldLabel": "Cost Center Hierarchy",
+   "valueId": "6d8f1bd75a7001c77bd4ac31c712b21c",
+   "valueLabel": "Marketing"
+  },
+  {
+   "fieldId": "658553f79a81b00900831a80",
+   "fieldLabel": "Brands",
+   "valueId": "default",
+   "valueLabel": "Wise"
+  },
+  {
+   "fieldId": "65d3d0374c34974b271801f9",
+   "fieldLabel": "Management Level",
+   "valueId": "e82698b941950185dfe774d4f100d610",
+   "valueLabel": "5"
+  },
+  {
+   "fieldId": "65d3d151a5d3185b4341a7ab",
+   "fieldLabel": "Cost Center",
+   "valueId": "927aec3939e010014cf32eba88750000",
+   "valueLabel": "Comparison"
+  },
+  {
+   "fieldId": "65d3d0a7d37044292ef9549a",
+   "fieldLabel": "Job Family",
+   "valueId": "06d8de3c30ba0101b154b9e21f330000",
+   "valueLabel": "Product Design"
+  },
+  {
+   "fieldId": "COUNTRY",
+   "fieldLabel": "Country/Region",
+   "valueId": "gb",
+   "valueLabel": "United Kingdom"
+  },
+  {
+   "fieldId": "65d3d05c735007771b14e932",
+   "fieldLabel": "Worker Type",
+   "valueId": "EE",
+   "valueLabel": "Wiser"
+  },
+  {
+   "fieldId": "65d90823f2e6436af25814c2",
+   "fieldLabel": "Job Ad Salary Range",
+   "valueLabel": "72000 - 105000 GBP Annual"
+  },
+  {
+   "fieldId": "65d3d0926435ba43bdb089ac",
+   "fieldLabel": "Job Family Group",
+   "valueId": "06d8de3c30ba0101b14e3c50cc0d0000",
+   "valueLabel": "Design"
+  },
+  {
+   "fieldId": "65cec407735007771b14e92d",
+   "fieldLabel": "Company",
+   "valueId": "046034784a4d01f4134f114764273117",
+   "valueLabel": "Wise Payments Limited"
+  },
+  {
+   "fieldId": "65d9080b4aa2f46927dfc1f3",
+   "fieldLabel": "WD Target Hire Date",
+   "valueLabel": "2027-01-19"
+  }
+ ],
+ "releasedDate": "2026-11-16T16:53:04.470Z",
+ "creator": {
+  "name": "",
+  "avatarUrl": ""
+ },
+ "postingUrl": "https://jobs.smartrecruiters.com/Wise/744000161866279-senior-product-designer-scalable-growth",
+ "applyUrl": "https://jobs.smartrecruiters.com/Wise/744000161866279-senior-product-designer-scalable-growth?oga=true",
+ "referralUrl": "https://jobs.smartrecruiters.com/external-referrals/company/Wise/publication/18ddd458-7a25-4e7e-9f5f-015b1edeaa46?dcr_ci=Wise",
+ "jobAd": {
+  "sections": {
+   "companyDescription": {
+    "title": "Company Description",
+    "text": "<p>Wise is a global technology company, building the best way to move and manage the world’s money.<br>\n<strong>Min fees. Max ease. Full speed.</strong></p><p>Whether people and businesses are sending money to another country, spending abroad, or making and receiving international payments, Wise is on a mission to make their lives easier and save them money.</p><p>As part of our team, you will be helping us create an entirely new network for the world's money.<br>\n<strong>For everyone, everywhere.</strong></p><p>More about <strong><a href=\"https://wise.jobs/our-mission\" rel=\"noopener noreferrer\" target=\"_blank\">our mission</a></strong> and <strong><a href=\"https://wise.jobs/what-we-offer\" rel=\"noopener noreferrer\" target=\"_blank\">what we offer</a></strong>.</p>"
+   },
+   "jobDescription": {
+    "title": "Job Description",
+    "text": "<p>We're looking for an exceptional Senior Product Designer to drive top-of-funnel growth and Comparison transparency at Wise. In this dual-focus role, you will pioneer our App Store Optimisation (ASO) design while leading the end-to-end user experience for our Comparison product area. You will act as the bridge between Product and Marketing, pioneering an honest, visually striking design approach. You will translate complex data into compelling, brand-led narratives that drive downloads and build immediate trust for millions of global users.</p><p><strong>How you’ll be contributing:</strong></p><ul><li><p>Price Comparison: Lead the design of our core comparison web pages and champion price transparency across the wider product by influencing cross-functional teams. You will translate complex data from 80+ providers into simple, high-converting experiences that educate and reassure users at exactly the right moments.</p></li><li><p>App Store Strategy and Discovery: Own the visual experience for our App Store and Google Play listings globally. You will design compelling screenshots, pioneer cover screen testing, and create world-class promotional assets and visual narratives that capture attention, drive discoverability, and seamlessly introduce Wise’s brand identity and USPs to new audiences.</p></li><li><p>Elevate Visual &amp; Brand Storytelling: Marry hard growth data with strong visual craft. You will seamlessly weave Wise's brand identity into high-intent product surfaces, utilising layout, data visualisation, expressive UI, and other brand design artwork to introduce our value proposition to users discovering us organically or searching for competitors.</p></li><li><p>Roadmap Influence &amp; Design Advocacy: Proactively help shape the product roadmap, advocating for how strategic design can solve complex problems, unlock new growth opportunities, and continually elevate the quality of your team's output.</p></li><li><p>Cross-Functional Collaboration: Partner deeply with Product, ASO, SEO, Content, Brand Design Systems, Engineering, logged-in teams, and Marketing to manage shared stakeholders and ensure cohesive user journeys across highly visible touchpoints.</p></li><li><p>Growth-Driven Experimentation: Design and run continuous A/B tests across app marketplaces and high-intent product surfaces to optimise top-of-funnel conversion and user acquisition.</p></li></ul><p>&#xa0;</p><p><strong>This role will give you the opportunity to:</strong></p><ul><li><p>Ship work you're proud of: Craft experiences that are innovative, easy to understand, and visually striking.</p></li><li><p>Own your impact: Product teams decide what opportunities to work on and define their success metrics, empowering you to understand exactly how your design decisions drive key KPIs.</p></li><li><p>Elevate product quality: You define what 'good' looks like to your team, and you help them deliver it.</p></li><li><p>Be part of a positive change: We're fixing a broken, greedy system, and putting people and businesses in control of their money.</p></li></ul>"
+   },
+   "qualifications": {
+    "title": "Qualifications",
+    "text": "<p>&#xa0;</p><ul><li><p>You operate effortlessly at the intersection of Product and Marketing. You possess an elite level of web design craft and a deep understanding of brand design and visual storytelling.</p></li><li><p>You have a well-established track record of experience as a Product Designer, championing customer-first design initiatives in world-class teams.</p></li><li><p>You have a standout portfolio that proves you are a true hybrid: demonstrating the ability to solve complex UX/growth problems while delivering highly polished, brand-accretive visual design.</p></li><li><p>You default to prototyping when presenting your work.</p></li><li><p>You’re a natural collaborator, designing in the open, leveraging other functions’ expertise, and taking them on the journey with you.</p></li><li><p>You understand that good design is often a journey to identify the right thing to build, using early concepts and prototypes to help build conviction along the way.</p></li><li><p>You are comfortable designing for mobile surfaces.</p></li><li><p>You don't just use design systems to produce beautiful, scalable UI; you know how to stretch and push these systems to create expressive, marketing-facing product pages.</p></li><li><p>You practise evidence-based design, and can rationalise your decisions clearly and credibly.</p></li></ul>"
+   },
+   "additionalInformation": {
+    "title": "Additional Information",
+    "text": "<div sr-tagline=\"\"></div><p>For everyone, everywhere. We're people building money without borders&#xa0; — without judgement or prejudice, too. We believe teams are strongest when they are diverse, equitable and inclusive.</p><p>We're proud to have a truly international team, and we celebrate our differences.<br>\nInclusive teams help us live our values and make sure every Wiser feels respected, empowered to contribute towards our mission and able to progress in their careers.</p><p>If you want to find out more about what it's like to work at Wise visit&#xa0;<a href=\"https://www.wise.jobs/\" rel=\"noopener noreferrer\" target=\"_blank\">Wise.Jobs</a>.</p><p>Keep up to date with life at Wise by following us on&#xa0;<a href=\"https://www.linkedin.com/company/1769571/\" rel=\"noopener noreferrer\" target=\"_blank\">LinkedIn</a>&#xa0;and&#xa0;<a href=\"https://www.instagram.com/wisecareers/\" rel=\"noopener noreferrer\" target=\"_blank\">Instagram</a>.</p>"
+   }
+  }
+ },
+ "compensation": {
+  "min": 72000,
+  "max": 105000,
+  "currency": "GBP",
+  "period": "YEARLY"
+ },
+ "active": true,
+ "visibility": "PUBLIC",
+ "industry": {
+  "id": "financial_services",
+  "label": "Financial Services"
+ },
+ "function": {
+  "id": "design",
+  "label": "Design"
+ },
+ "experienceLevel": {
+  "id": "mid_senior_level",
+  "label": "Mid-Senior Level"
+ },
+ "typeOfEmployment": {
+  "id": "permanent",
+  "label": "Full-time"
+ },
+ "language": {
+  "code": "en",
+  "label": "English",
+  "labelNative": "English (US)"
+ }
+}
