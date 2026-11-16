@@ -82,6 +82,7 @@ Each job gets exactly one label, checked in this order. **(Founder, with calls m
 
 **Edge cases (Call)**
 - Both "Likely eligible" labels also require the employer's sponsor licence to cover the Skilled Worker route (which includes Health and Care) on the register. An employer licensed only for other routes can't produce Likely eligible.
+- **Sponsorship offered** and both **Likely eligible** labels require the employer's **Worker licence to be A-rated** (`sponsors.rating = 'a'`; Premium and SME+ count as A). B-rated employers (downgraded for compliance problems, so they generally can't sponsor new workers), provisional UK Expansion Worker licences, and employers with only a Temporary Worker licence produce **Open to all** at most. **(Founder approved, 2026-11-16)**
 - A job listed in several locations is kept if at least one is in the UK, and only the UK locations are shown.
 - "Remote – UK" counts as UK. A bare "Remote" with no country is treated as unclear and isn't listed.
 

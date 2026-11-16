@@ -1,0 +1,37 @@
+# Daily sync of the Home Office register of licensed sponsors into the `sponsors` table.
+# See scripts/register-sync.ts. Each run is also logged in the `runs` table.
+#
+# A failed run (download error, safety-check stop, database error) shows as a red run in the
+# Actions tab, and GitHub emails the repo owner by default.
+name: Sponsor register sync
+
+on:
+  schedule:
+    - cron: "0 5 * * *" # every day at 05:00 UTC (05:00 GMT / 06:00 BST)
+  workflow_dispatch: # "Run workflow" button in the Actions tab, for a manual run
+
+permissions:
+  contents: read
+
+concurrency:
+  group: register-sync # never two syncs at once
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 26 # same major version as local development
+          cache: npm
+
+      - run: npm ci
+
+      - name: Sync the register
+        run: npm run register:sync -- --apply
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}

@@ -62,6 +62,12 @@ describe("schema", () => {
   });
 
   describe("sponsors", () => {
+    it("stores the Worker licence rating as a / b / provisional (optional)", () => {
+      expect(column("sponsors", "rating").notNull).toBe(false);
+      const s = checkSql("sponsors", "sponsors_rating_check");
+      for (const v of ["a", "b", "provisional"]) expect(s).toContain(`'${v}'`);
+    });
+
     it("is unique on normalised name + town, treating a blank town as a value", () => {
       const u = byName("sponsors").uniqueConstraints.find(
         (u) => u.columns.map((c) => c.name).join(",") === "name_normalised,town",

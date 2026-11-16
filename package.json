@@ -10,7 +10,8 @@
     "test": "vitest run",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
-    "db:studio": "drizzle-kit studio"
+    "db:studio": "drizzle-kit studio",
+    "register:sync": "tsx --env-file-if-exists=.env.local scripts/register-sync.ts"
   },
   "dependencies": {
     "@base-ui/react": "^1.9.0",

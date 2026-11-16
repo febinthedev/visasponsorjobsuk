@@ -22,6 +22,7 @@ import { authUsers } from "drizzle-orm/supabase";
 
 // Allowed values for text columns (kept as text + check constraint, easier to change than enums).
 export const COMPANY_NUMBER_STATUSES = ["matched", "not_found", "ambiguous"] as const;
+export const RATINGS = ["a", "b", "provisional"] as const;
 export const SOURCE_SYSTEMS = ["greenhouse", "lever", "ashby", "workable", "smartrecruiters", "workday", "nhs_jobs", "trac"] as const;
 export const SOURCE_STATUSES = ["active", "not_found", "error", "ambiguous"] as const;
 export const CATEGORIES = ["healthcare", "software_it", "engineering", "finance", "business", "marketing", "sales", "design", "education", "other"] as const;
@@ -62,6 +63,11 @@ export const sponsors = pgTable.withRLS(
     county: text(),
     // Visa routes the licence covers, e.g. {"Skilled Worker"}.
     routes: text().array().notNull().default(sql`'{}'`),
+    // Rating of the Worker licence (the one covering Skilled Worker): a (incl. Premium / SME+),
+    // b (downgraded; generally can't sponsor new workers) or provisional (UK Expansion Worker).
+    // Empty = only a Temporary Worker licence, or a rating we didn't recognise. Only "a" can earn
+    // the Sponsorship offered / Likely eligible labels.
+    rating: text(),
     // True if this employer is a recruitment/staffing agency; agencies are never scraped.
     is_agency: boolean().notNull().default(false),
     // Which rule flagged it as an agency, so a wrong flag can be traced and fixed.
@@ -83,6 +89,7 @@ export const sponsors = pgTable.withRLS(
     unique().on(t.name_normalised, t.town).nullsNotDistinct(),
     index().on(t.company_number),
     check("sponsors_company_number_status_check", oneOf(t.company_number_status, COMPANY_NUMBER_STATUSES)),
+    check("sponsors_rating_check", oneOf(t.rating, RATINGS)),
   ],
 );
 

@@ -1,0 +1,76 @@
+{
+  "type": "diff",
+  "version": "9",
+  "dialect": "postgres",
+  "id": "d51a3b73-f64e-4bba-b081-0cda42e0e18d",
+  "prevIds": [
+    "fbc18a82-929b-44ce-9050-c004581f0223"
+  ],
+  "footprints": [
+    {
+      "statementType": "add_column",
+      "statementTarget": [
+        "column",
+        "public",
+        "sponsors",
+        "rating"
+      ],
+      "writes": [
+        "s|col|public.sponsors.rating",
+        "n|col|public.sponsors.rating",
+        "e|col|public.sponsors.rating"
+      ],
+      "reads": [
+        "n|tbl|public.sponsors",
+        "n|sch|public"
+      ]
+    },
+    {
+      "statementType": "add_check",
+      "statementTarget": [
+        "table",
+        "public",
+        "sponsors"
+      ],
+      "writes": [
+        "s|ck|public.sponsors.sponsors_rating_check",
+        "n|ck|public.sponsors.sponsors_rating_check",
+        "e|ck|public.sponsors.sponsors_rating_check",
+        "n|con|public.sponsors.sponsors_rating_check"
+      ],
+      "reads": [
+        "n|tbl|public.sponsors",
+        "n|sch|public",
+        "n|col|public.sponsors.rating"
+      ]
+    }
+  ],
+  "deltas": [
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "sponsors",
+        "name": "rating",
+        "type": "text",
+        "typeSchema": null,
+        "notNull": false,
+        "dimensions": 0,
+        "default": null,
+        "generated": null,
+        "identity": null,
+        "entityType": "columns"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "sponsors",
+        "name": "sponsors_rating_check",
+        "value": "\"rating\" in ('a', 'b', 'provisional')",
+        "entityType": "checks"
+      }
+    }
+  ]
+}
