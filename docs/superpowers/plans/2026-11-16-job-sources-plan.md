@@ -35,7 +35,7 @@ A board belongs to an employer only if **all** of these hold:
 2. The board has **at least one UK job**.
 3. That employer isn't an agency.
 
-If two or more employers could match, the board is stored as `ambiguous` and skipped, never guessed. **(Call)** If the names match word for word, the board belongs to that employer even if other employers' names also start with those words.
+If two or more employers could match, the board is stored as `ambiguous` and skipped, never guessed. An exact name doesn't win over longer names that start with it. **(Call, changed 2026-11-16)** My first version let it win, but the real register has "WISE", a different organisation from "Wise Payments". That version would have put Wise's 209 jobs under the wrong employer.
 
 ## Stages
 

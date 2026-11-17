@@ -1,0 +1,280 @@
+{
+  "type": "diff",
+  "version": "9",
+  "dialect": "postgres",
+  "id": "895b5d1c-e38a-44c0-9c22-f38b1484b4f1",
+  "prevIds": [
+    "d51a3b73-f64e-4bba-b081-0cda42e0e18d"
+  ],
+  "footprints": [
+    {
+      "statementType": "create_table",
+      "statementTarget": [
+        "table",
+        "public",
+        "discovery_checks"
+      ],
+      "writes": [
+        "s|tbl|public.discovery_checks",
+        "n|tbl|public.discovery_checks",
+        "e|tbl|public.discovery_checks",
+        "n|rel|public.discovery_checks",
+        "n|type|public.discovery_checks",
+        "n|rel|public.discovery_checks_pkey"
+      ],
+      "reads": [
+        "n|sch|public"
+      ]
+    },
+    {
+      "statementType": "alter_column",
+      "statementTarget": [
+        "column",
+        "public",
+        "jobs",
+        "category"
+      ],
+      "writes": [
+        "s|colprop|public.jobs.category.notNull"
+      ],
+      "reads": [
+        "n|tbl|public.jobs",
+        "n|sch|public",
+        "n|col|public.jobs.category"
+      ],
+      "sqlHash": "af7d4945c3520019"
+    },
+    {
+      "statementType": "alter_column",
+      "statementTarget": [
+        "column",
+        "public",
+        "jobs",
+        "label"
+      ],
+      "writes": [
+        "s|colprop|public.jobs.label.notNull"
+      ],
+      "reads": [
+        "n|tbl|public.jobs",
+        "n|sch|public",
+        "n|col|public.jobs.label"
+      ],
+      "sqlHash": "ccee62e427720748"
+    },
+    {
+      "statementType": "alter_column",
+      "statementTarget": [
+        "column",
+        "public",
+        "jobs",
+        "label_reason"
+      ],
+      "writes": [
+        "s|colprop|public.jobs.label_reason.notNull"
+      ],
+      "reads": [
+        "n|tbl|public.jobs",
+        "n|sch|public",
+        "n|col|public.jobs.label_reason"
+      ],
+      "sqlHash": "8bcaba71381a3f2f"
+    },
+    {
+      "statementType": "alter_column",
+      "statementTarget": [
+        "column",
+        "public",
+        "jobs",
+        "rules_version"
+      ],
+      "writes": [
+        "s|colprop|public.jobs.rules_version.notNull"
+      ],
+      "reads": [
+        "n|tbl|public.jobs",
+        "n|sch|public",
+        "n|col|public.jobs.rules_version"
+      ],
+      "sqlHash": "bcbdafcf8d783368"
+    },
+    {
+      "statementType": "alter_column",
+      "statementTarget": [
+        "column",
+        "public",
+        "jobs",
+        "labelled_at"
+      ],
+      "writes": [
+        "s|colprop|public.jobs.labelled_at.notNull"
+      ],
+      "reads": [
+        "n|tbl|public.jobs",
+        "n|sch|public",
+        "n|col|public.jobs.labelled_at"
+      ],
+      "sqlHash": "9590520b4d8a5cc7"
+    }
+  ],
+  "deltas": [
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "name": "discovery_checks",
+        "isRlsEnabled": true,
+        "entityType": "tables"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "discovery_checks",
+        "name": "system",
+        "type": "text",
+        "typeSchema": null,
+        "notNull": true,
+        "dimensions": 0,
+        "default": null,
+        "generated": null,
+        "identity": null,
+        "entityType": "columns"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "discovery_checks",
+        "name": "board_key",
+        "type": "text",
+        "typeSchema": null,
+        "notNull": true,
+        "dimensions": 0,
+        "default": null,
+        "generated": null,
+        "identity": null,
+        "entityType": "columns"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "discovery_checks",
+        "name": "result",
+        "type": "text",
+        "typeSchema": null,
+        "notNull": true,
+        "dimensions": 0,
+        "default": null,
+        "generated": null,
+        "identity": null,
+        "entityType": "columns"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "discovery_checks",
+        "name": "company_name",
+        "type": "text",
+        "typeSchema": null,
+        "notNull": false,
+        "dimensions": 0,
+        "default": null,
+        "generated": null,
+        "identity": null,
+        "entityType": "columns"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "discovery_checks",
+        "name": "checked_at",
+        "type": "timestamp with time zone",
+        "typeSchema": null,
+        "notNull": true,
+        "dimensions": 0,
+        "default": null,
+        "generated": null,
+        "identity": null,
+        "entityType": "columns"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "discovery_checks",
+        "name": "discovery_checks_pkey",
+        "columns": [
+          "system",
+          "board_key"
+        ],
+        "nameExplicit": false,
+        "entityType": "pks"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "discovery_checks",
+        "name": "discovery_checks_system_check",
+        "value": "\"system\" in ('greenhouse', 'lever', 'ashby', 'workable', 'smartrecruiters', 'workday', 'nhs_jobs', 'trac')",
+        "entityType": "checks"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "discovery_checks",
+        "name": "discovery_checks_result_check",
+        "value": "\"result\" in ('not_found', 'no_name', 'no_uk_jobs', 'no_match', 'ambiguous', 'matched', 'error')",
+        "entityType": "checks"
+      }
+    },
+    {
+      "op": "alter",
+      "key": "columns\u0000[\"public\",\"jobs\",\"category\"]",
+      "set": {
+        "notNull": false
+      }
+    },
+    {
+      "op": "alter",
+      "key": "columns\u0000[\"public\",\"jobs\",\"label\"]",
+      "set": {
+        "notNull": false
+      }
+    },
+    {
+      "op": "alter",
+      "key": "columns\u0000[\"public\",\"jobs\",\"label_reason\"]",
+      "set": {
+        "notNull": false
+      }
+    },
+    {
+      "op": "alter",
+      "key": "columns\u0000[\"public\",\"jobs\",\"rules_version\"]",
+      "set": {
+        "notNull": false
+      }
+    },
+    {
+      "op": "alter",
+      "key": "columns\u0000[\"public\",\"jobs\",\"labelled_at\"]",
+      "set": {
+        "notNull": false
+      }
+    }
+  ]
+}

@@ -10,13 +10,13 @@ const API = "https://api.smartrecruiters.com/v1/companies";
 const PAGE = 100;
 
 type Location = { fullLocation?: string; country?: string; remote?: boolean };
-type ListItem = { id: string; company?: { name?: string }; location?: Location };
+type ListItem = { id: string; name: string; releasedDate?: string; company?: { name?: string }; location?: Location };
 type List = { totalFound: number; content: ListItem[] };
 type Section = { title?: string; text?: string };
 type Detail = {
   id: string;
   name: string;
-  postingUrl: string;
+  postingUrl?: string; // absent in summary mode (list items only)
   releasedDate?: string;
   location?: Location;
   jobAd?: { sections?: Record<string, Section> };
@@ -37,7 +37,7 @@ function toJob(d: Detail): BoardJob {
     title: d.name.trim(),
     description_html: html,
     description_text: htmlToText(html),
-    apply_url: d.postingUrl,
+    apply_url: d.postingUrl ?? "",
     locations: place ? [place] : [],
     countries: d.location?.country ? [d.location.country] : [],
     remote: d.location?.remote ?? null,
@@ -45,7 +45,7 @@ function toJob(d: Detail): BoardJob {
   };
 }
 
-export const readSmartRecruiters: BoardReader = async (boardKey, fetchFn = fetch) => {
+export const readSmartRecruiters: BoardReader = async (boardKey, fetchFn = fetch, opts = {}) => {
   const base = `${API}/${encodeURIComponent(boardKey)}/postings`;
 
   const items: ListItem[] = [];
@@ -57,10 +57,15 @@ export const readSmartRecruiters: BoardReader = async (boardKey, fetchFn = fetch
   }
   if (items.length === 0) return null;
 
+  const ukItems = items.filter((i) => i.location?.country?.toLowerCase() === "gb");
+  const company_name = items[0].company?.name?.trim() || null;
+  // Summary (discovery): the list already has titles and places, so no detail requests.
+  if (opts.summary) return { company_name, jobs: ukItems.map((i) => toJob(i)) };
+
   const jobs: BoardJob[] = [];
-  for (const item of items.filter((i) => i.location?.country?.toLowerCase() === "gb")) {
+  for (const item of ukItems) {
     const detail = await getJson<Detail>(`${base}/${encodeURIComponent(item.id)}`, fetchFn);
     if (detail) jobs.push(toJob(detail));
   }
-  return { company_name: items[0].company?.name?.trim() || null, jobs };
+  return { company_name, jobs };
 };

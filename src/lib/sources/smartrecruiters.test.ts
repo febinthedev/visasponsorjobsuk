@@ -37,6 +37,17 @@ describe("readSmartRecruiters (Wise's real postings, saved 2026-11-16)", () => {
     expect(job.description_text).not.toMatch(/<[a-z]/i);
   });
 
+  it("in summary mode, lists UK postings from the list alone, without fetching any details", async () => {
+    const listOnly = fakeFetch({ [LIST]: "smartrecruiters-list.json" }); // detail URLs would fail the test
+    const board = await readSmartRecruiters("wise", listOnly, { summary: true });
+    expect(board?.company_name).toBe("Wise");
+    expect(board?.jobs.map((j) => [j.external_id, j.countries, j.locations])).toEqual([
+      ["744000161866279", ["gb"], ["London, United Kingdom"]],
+      ["744000161788782", ["gb"], ["London, United Kingdom"]],
+    ]);
+    expect(board?.jobs[0].description_text).toBe("");
+  });
+
   it("treats a name with no postings as no board (the API answers 200 for any name)", async () => {
     const empty = fakeFetch({ [`${API}/zzz/postings?limit=100&offset=0`]: "smartrecruiters-empty.json" });
     expect(await readSmartRecruiters("zzz", empty)).toBeNull();

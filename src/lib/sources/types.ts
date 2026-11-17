@@ -17,5 +17,9 @@ export type Board = {
   jobs: BoardJob[];
 };
 
+// summary: only what discovery needs (company name, titles, places). Readers that need extra
+// requests for descriptions skip them, so jobs may have an empty description and apply URL.
+export type ReadOptions = { summary?: boolean };
+
 // Reads one board. Resolves to null when the board doesn't exist on that system.
-export type BoardReader = (boardKey: string, fetchFn?: typeof fetch) => Promise<Board | null>;
+export type BoardReader = (boardKey: string, fetchFn?: typeof fetch, opts?: ReadOptions) => Promise<Board | null>;

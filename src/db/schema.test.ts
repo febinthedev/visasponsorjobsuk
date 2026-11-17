@@ -45,13 +45,33 @@ const pkCols = (table: string) => {
 };
 
 describe("schema", () => {
-  it("has exactly the 11 approved tables", () => {
+  it("has exactly the 12 approved tables", () => {
     expect(tables.map((t) => cfg(t).name).sort()).toEqual(
       [
-        "alerts_sent", "job_sources", "jobs", "occupation_titles", "occupations",
+        "alerts_sent", "discovery_checks", "job_sources", "jobs", "occupation_titles", "occupations",
         "passes", "profiles", "rule_sets", "runs", "saved_jobs", "sponsors",
       ].sort(),
     );
+  });
+
+  describe("discovery_checks", () => {
+    it("has one row per board name tried on each system", () => {
+      expect(pkCols("discovery_checks")).toEqual(["system", "board_key"]);
+    });
+
+    it("records the result, the board's company name and when it was checked", () => {
+      expect(column("discovery_checks", "checked_at").notNull).toBe(true);
+      expect(column("discovery_checks", "result").notNull).toBe(true);
+      expect(column("discovery_checks", "company_name").notNull).toBe(false);
+      const s = checkSql("discovery_checks", "discovery_checks_result_check");
+      for (const v of ["not_found", "no_name", "no_uk_jobs", "no_match", "ambiguous", "matched", "error"]) {
+        expect(s).toContain(`'${v}'`);
+      }
+    });
+
+    it("only allows known hiring systems", () => {
+      expect(checkSql("discovery_checks", "discovery_checks_system_check")).toContain("'greenhouse'");
+    });
   });
 
   it("enables row level security on every table, with no policies", () => {
@@ -118,8 +138,15 @@ describe("schema", () => {
     });
 
     it("records why a label was given and by which rules", () => {
-      for (const c of ["label_reason", "rules_version", "labelled_at"]) expect(column("jobs", c).notNull, c).toBe(true);
-      expect(column("jobs", "label_evidence")).toBeDefined();
+      for (const c of ["label_reason", "rules_version", "labelled_at", "label_evidence"]) {
+        expect(column("jobs", c), c).toBeDefined();
+      }
+    });
+
+    it("lets jobs be collected before they're labelled (label fields optional; unlabelled jobs stay hidden)", () => {
+      for (const c of ["label", "label_reason", "rules_version", "labelled_at", "category"]) {
+        expect(column("jobs", c).notNull, c).toBe(false);
+      }
     });
 
     it("stores job type as one list column instead of work pattern + contract type", () => {

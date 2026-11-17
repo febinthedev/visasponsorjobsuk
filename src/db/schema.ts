@@ -25,6 +25,7 @@ export const COMPANY_NUMBER_STATUSES = ["matched", "not_found", "ambiguous"] as 
 export const RATINGS = ["a", "b", "provisional"] as const;
 export const SOURCE_SYSTEMS = ["greenhouse", "lever", "ashby", "workable", "smartrecruiters", "workday", "nhs_jobs", "trac"] as const;
 export const SOURCE_STATUSES = ["active", "not_found", "error", "ambiguous"] as const;
+export const DISCOVERY_RESULTS = ["not_found", "no_name", "no_uk_jobs", "no_match", "ambiguous", "matched", "error"] as const;
 export const CATEGORIES = ["healthcare", "software_it", "engineering", "finance", "business", "marketing", "sales", "design", "education", "other"] as const;
 // Empty list = the ad did not say. Combinations are allowed, e.g. {full_time, fixed_term}.
 export const EMPLOYMENT_TYPES = ["full_time", "part_time", "fixed_term", "zero_hours", "freelance", "early_careers"] as const;
@@ -123,6 +124,28 @@ export const job_sources = pgTable.withRLS(
   ],
 );
 
+export const discovery_checks = pgTable.withRLS(
+  "discovery_checks",
+  {
+    // Hiring system the board name was tried on.
+    system: text().notNull(),
+    // The board name tried (e.g. "monzo"); with system, identifies one check.
+    board_key: text().notNull(),
+    // not_found (no board), no_name (board gives no company name), no_uk_jobs, no_match (name fits
+    // no employer), ambiguous (fits several), matched (added to job_sources) or error (read failed).
+    result: text().notNull(),
+    // The company name the board showed, if any, so it can be re-matched without asking again.
+    company_name: text(),
+    // When it was last checked; old checks can be retried later.
+    checked_at: ts().notNull(),
+  },
+  (t) => [
+    primaryKey({ columns: [t.system, t.board_key] }),
+    check("discovery_checks_system_check", oneOf(t.system, SOURCE_SYSTEMS)),
+    check("discovery_checks_result_check", oneOf(t.result, DISCOVERY_RESULTS)),
+  ],
+);
+
 // ── C. Home Office rules (data, not code) ───────────────────────────────────
 
 export const rule_sets = pgTable.withRLS(
@@ -210,8 +233,8 @@ export const jobs = pgTable.withRLS(
     // True if the job can be done remotely within the UK.
     is_remote: boolean().notNull().default(false),
 
-    // Job category for browsing, e.g. healthcare, software_it.
-    category: text().notNull(),
+    // Job category for browsing, e.g. healthcare, software_it (empty until the job is read/labelled).
+    category: text(),
     // Salary exactly as written in the ad.
     salary_text: text(),
     // Lower end of the salary, converted to £ per year (used for the threshold check).
@@ -234,15 +257,16 @@ export const jobs = pgTable.withRLS(
     soc_code: text().references(() => occupations.soc_code, { onDelete: "set null" }),
 
     // Sponsorship label: sponsorship_offered, likely_eligible, likely_eligible_new_entrant or open_to_all.
-    label: text().notNull(),
+    // Empty = collected but not yet labelled; unlabelled jobs are hidden everywhere on the site.
+    label: text(),
     // Which rule decided the label.
-    label_reason: text().notNull(),
+    label_reason: text(),
     // The phrase from the ad that triggered the label, if any.
     label_evidence: text(),
     // Which rule set was used to label this job.
-    rules_version: text().notNull(),
+    rules_version: text(),
     // When the label was last worked out.
-    labelled_at: ts().notNull(),
+    labelled_at: ts(),
 
     // Posting date given by the employer, if any.
     posted_at: ts(),
