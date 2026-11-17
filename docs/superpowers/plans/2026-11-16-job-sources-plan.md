@@ -89,6 +89,12 @@ Each stage needs the founder's go-ahead, is built test-first, and is verified be
 
 **Schema change (Decide):** `jobs.label`, `label_reason`, `rules_version`, `labelled_at` and `category` are currently required. Jobs collected before step 4's labeller runs won't have them. Proposal: make them optional, and **hide unlabelled jobs everywhere** until they're labelled.
 
+**Built (2026-11-17):** `src/lib/collect/`, `scripts/collect.ts` (`npm run collect`, `-- --apply` to write), `.github/workflows/collect-jobs.yml` (every 6 hours at :30). Rules as built:
+- an edited ad (title, description, apply link, UK places, remote flag or posting date changed) has its label cleared, so it's hidden until re-labelled;
+- a failed read marks the board `error` and leaves its jobs open; a board that no longer exists is marked `not_found` and its jobs close. Both are tried again on the next run, so boards recover by themselves;
+- jobs of employers that leave the register or become agencies close at the start of each run;
+- a closed job that reappears reopens (same ad) or is updated (edited ad).
+
 ### Stage E: Scheduling (Call)
 
 GitHub Actions, like the register sync:

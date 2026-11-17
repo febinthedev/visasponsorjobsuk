@@ -1,4 +1,4 @@
-import { afterAll, describe, expect, it } from "vitest";
+import { afterAll, describe, expect, it, vi } from "vitest";
 import { and, eq } from "drizzle-orm";
 import { db } from "@/db";
 import { discovery_checks, job_sources, sponsors } from "@/db/schema";
@@ -23,6 +23,10 @@ const addSponsor = async (tx: Tx, name_normalised: string, extra: Partial<typeof
     .returning({ id: sponsors.id });
   return row.id;
 };
+
+// loadCheckedKeys reads the whole real discovery_checks table (178k rows on 2026-11-17, growing
+// nightly), which takes several seconds: more than Vitest's 5 s default.
+vi.setConfig({ testTimeout: 60_000 });
 
 afterAll(async () => {
   await db.$client.end();
