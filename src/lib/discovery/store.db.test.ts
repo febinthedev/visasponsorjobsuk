@@ -66,6 +66,20 @@ describe("loadCheckedKeys", () => {
     });
   });
 
+  it("re-checks boards that fit an employer but had no UK jobs sooner (weekly), founder decision 2026-11-17", async () => {
+    await inRollback(async (tx) => {
+      const day = 86_400_000;
+      const now = Date.now();
+      await saveOutcome(tx, { system: "greenhouse", board_key: `${KEY}-a`, result: "no_uk_jobs", company_name: "A" }, new Date(now - 10 * day));
+      await saveOutcome(tx, { system: "greenhouse", board_key: `${KEY}-b`, result: "no_uk_jobs", company_name: "B" }, new Date(now - 3 * day));
+      await saveOutcome(tx, { system: "greenhouse", board_key: `${KEY}-c`, result: "not_found", company_name: null }, new Date(now - 10 * day));
+      const keys = await loadCheckedKeys(tx, new Date(now - 90 * day), new Date(now - 7 * day));
+      expect(keys.has(`greenhouse:${KEY}-a`)).toBe(false); // no UK jobs, over a week ago: due again
+      expect(keys.has(`greenhouse:${KEY}-b`)).toBe(true); // checked this week
+      expect(keys.has(`greenhouse:${KEY}-c`)).toBe(true); // other results keep the 90-day wait
+    });
+  });
+
   it("leaves out failed checks (e.g. rate limited), so they're retried on the next run", async () => {
     await inRollback(async (tx) => {
       await saveOutcome(tx, { system: "workable", board_key: KEY, result: "error", company_name: null }, new Date());

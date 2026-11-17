@@ -1,6 +1,6 @@
 // Database side of discovery: which employers can be matched, which boards were already checked,
 // and saving each check (plus matched boards into job_sources).
-import { and, eq, gte, isNull, ne } from "drizzle-orm";
+import { and, eq, gte, isNull, ne, or } from "drizzle-orm";
 import { db } from "@/db";
 import { discovery_checks, job_sources, sponsors } from "@/db/schema";
 import type { CheckOutcome } from "./check";
@@ -17,13 +17,24 @@ export async function loadSponsorIndex(conn: Db = db): Promise<SponsorIndex> {
   return buildSponsorIndex(rows);
 }
 
-// Boards checked since `since`, as "system:board_key"; older checks are due to be tried again.
-// Failed checks (result "error", e.g. rate limited) are left out, so the next run retries them.
-export async function loadCheckedKeys(conn: Db, since: Date): Promise<Set<string>> {
+// Boards checked recently enough to skip, as "system:board_key"; everything else is due again:
+// - most results wait until `since` (e.g. 90 days);
+// - "no_uk_jobs" boards (fit an employer, no UK jobs yet) only wait until `noUkJobsSince`
+//   (e.g. 7 days), so they're added soon after they post UK jobs (founder decision 2026-11-17);
+// - failed checks ("error", e.g. rate limited) are never skipped: the next run retries them.
+export async function loadCheckedKeys(conn: Db, since: Date, noUkJobsSince: Date = since): Promise<Set<string>> {
   const rows = await conn
     .select({ system: discovery_checks.system, board_key: discovery_checks.board_key })
     .from(discovery_checks)
-    .where(and(gte(discovery_checks.checked_at, since), ne(discovery_checks.result, "error")));
+    .where(
+      and(
+        ne(discovery_checks.result, "error"),
+        or(
+          and(ne(discovery_checks.result, "no_uk_jobs"), gte(discovery_checks.checked_at, since)),
+          and(eq(discovery_checks.result, "no_uk_jobs"), gte(discovery_checks.checked_at, noUkJobsSince)),
+        ),
+      ),
+    );
   return new Set(rows.map((r) => `${r.system}:${r.board_key}`));
 }
 

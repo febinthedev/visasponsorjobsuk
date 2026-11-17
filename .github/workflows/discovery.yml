@@ -1,0 +1,48 @@
+# Finds register employers' job boards (scripts/discover.ts) and adds matches to job_sources.
+# Each run skips boards already checked, so runs carry on where the last one stopped: the first
+# full name-guessing pass (~1.1M checks) takes a few runs; after that a night's run only checks new
+# employers, weekly re-checks and errors to retry. Each run is logged in the `runs` table.
+name: Job board discovery
+
+on:
+  schedule:
+    - cron: "0 23 * * *" # every day at 23:00 UTC, done before the 05:00 register sync
+  workflow_dispatch: # "Run workflow" button: run extra passes, or the archive source
+    inputs:
+      source:
+        description: "guess (board names from employer names) or archive (Common Crawl lists)"
+        type: choice
+        options: [guess, archive]
+        default: guess
+      minutes:
+        description: "Stop taking new work after this many minutes"
+        type: number
+        default: 330
+
+permissions:
+  contents: read
+
+concurrency:
+  group: discovery # never two discovery runs at once (they'd double the request rate)
+  cancel-in-progress: false
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350 # GitHub's limit is 360
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 26
+          cache: npm
+
+      - run: npm ci
+
+      - name: Discover job boards
+        run: npm run discover -- --source="$SOURCE" --minutes="$MINUTES" --rate=6 --apply
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          SOURCE: ${{ inputs.source || 'guess' }}
+          MINUTES: ${{ inputs.minutes || 330 }}

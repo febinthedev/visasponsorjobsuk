@@ -5,7 +5,8 @@
 //   npm run discover -- --source=archive                  board names from the Common Crawl archive
 //   npm run discover -- --source=guess --sample=2000      guessed names for 2,000 random employers
 //   options: --systems=greenhouse,lever  --rate=4 (checks started/second/system)  --concurrency=4  --minutes=110
-//            --recheck-days=90  --seed=1  --report=path.json  --apply (write; otherwise a dry run)
+//            --recheck-days=90  --recheck-no-uk-days=7 (boards that fit an employer but had no UK jobs)
+//            --seed=1  --report=path.json  --apply (write; otherwise a dry run)
 import { writeFileSync } from "node:fs";
 import { and, eq, inArray, isNull } from "drizzle-orm";
 import { db } from "@/db";
@@ -31,6 +32,7 @@ const rate = Number(arg("rate", "4"));
 const concurrency = Number(arg("concurrency", "4"));
 const minutes = Number(arg("minutes", "110"));
 const recheckDays = Number(arg("recheck-days", "90"));
+const recheckNoUkDays = Number(arg("recheck-no-uk-days", "7"));
 const sample = arg("sample") ? Number(arg("sample")) : undefined;
 const seed = Number(arg("seed", "1"));
 const reportPath = arg("report");
@@ -91,7 +93,8 @@ async function main(): Promise<number> {
   try {
     console.log(`Discovery (${source}${sample ? `, sample ${sample}` : ""}) — ${apply ? "APPLY" : "dry run"}`);
     const index = await loadSponsorIndex();
-    const checked = await loadCheckedKeys(db, new Date(Date.now() - recheckDays * 86_400_000));
+    const daysAgo = (d: number) => new Date(Date.now() - d * 86_400_000);
+    const checked = await loadCheckedKeys(db, daysAgo(recheckDays), daysAgo(recheckNoUkDays));
     const { queues, employers } = await buildQueues(checked);
 
     const outcomes: CheckOutcome[] = [];
