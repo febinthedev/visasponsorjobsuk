@@ -104,4 +104,21 @@ describe("runQueues", () => {
     });
     expect(Date.now() - started).toBeGreaterThanOrEqual(75); // two pauses between three requests
   });
+
+  // Nightly discovery runs never finished (2026-11-17/18/19): some check never settled, so the run
+  // waited forever and GitHub cancelled it.
+  it("gives up on a check that never finishes, counts it as an error, and carries on", async () => {
+    const done: string[] = [];
+    const summary = await runQueues(
+      { greenhouse: ["stuck", "2"] },
+      async (_s, item) => {
+        if (item === "stuck") return new Promise<{ error: boolean }>(() => {}); // never settles
+        done.push(item);
+        return { error: false };
+      },
+      { intervalMs: 0, maxConsecutiveErrors: 3, itemTimeoutMs: 50 },
+    );
+    expect(done).toEqual(["2"]);
+    expect(summary.greenhouse).toEqual({ done: 2, errors: 1, stopped: null });
+  });
 });

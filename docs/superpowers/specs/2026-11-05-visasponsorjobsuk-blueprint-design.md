@@ -88,6 +88,12 @@ Each job gets exactly one label, checked in this order. **(Founder, with calls m
 
 **Rules as data.** Thresholds, going rates, the list of eligible occupations and the new-entrant rules all live in database tables, so they can be updated without a code change. The builder must copy the current figures from gov.uk at build time and record the source and date. **(Call)**
 
+**Rules loaded (2026-11-19),** with `npm run rules:import` (read live from gov.uk and ONS each time it's run). **(Founder)**
+- Thresholds: £41,700 general; £33,400 new entrant, with 70% of the going rate.
+- Eligible occupations: Appendix Skilled Occupations **Table 1** (91 degree-level codes, with going rates) and **Table 3** (30 health and education codes, no going rate yet, so they can't be Likely eligible until pay bands are handled with NHS Jobs in Phase 2).
+- Not used: Tables 1a/2/2a/2aa/2b (only for people already sponsored), the Temporary Shortage List and Immigration Salary List (both end 31 December 2026), and the PhD options (they depend on the applicant, not the job).
+- Job titles: the ONS SOC 2020 coding index, every title → code pair; a title with several codes isn't a confident match.
+
 **Reading the ad (Builder, within these constraints)**
 - Salary: work out the annual pay from the ad's stated salary, converting hourly, daily or monthly figures to a yearly amount. For a salary range, use the **lower end**. **(Call)**
 - Occupation code: match job titles against the ONS SOC 2020 coding index, a public table of job titles and their codes. If a title has no confident match, the job can't be Likely eligible. **(Call)**

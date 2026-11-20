@@ -98,6 +98,12 @@ async function main(): Promise<number> {
     const { queues, employers } = await buildQueues(checked);
 
     const outcomes: CheckOutcome[] = [];
+    // Progress in the GitHub log, so a slow or stuck run shows where it is.
+    const progress = setInterval(() => {
+      const bySystem: Record<string, number> = {};
+      for (const o of outcomes) bySystem[o.system] = (bySystem[o.system] ?? 0) + 1;
+      console.log(`    ${((Date.now() - startedAt.getTime()) / 60_000).toFixed(0)} min: ${JSON.stringify(bySystem)}`);
+    }, 10 * 60_000).unref(); // never keeps the process alive on its own
     const summary = await runQueues(
       queues,
       async (system, key) => {
@@ -112,8 +118,10 @@ async function main(): Promise<number> {
         concurrency,
         perSystem: PACE,
         deadline: startedAt.getTime() + minutes * 60_000,
+        itemTimeoutMs: 2 * 60_000, // a check (web request + database write) that hangs is given up on and retried next run
       },
     );
+    clearInterval(progress);
 
     // Report
     const matched = outcomes.filter((o) => o.result === "matched");
@@ -168,4 +176,4 @@ async function main(): Promise<number> {
 
 main()
   .then((code) => (process.exitCode = code))
-  .finally(() => db.$client.end());
+  .finally(() => db.$client.end({ timeout: 10 })); // don't wait on a hung query: close after 10 s

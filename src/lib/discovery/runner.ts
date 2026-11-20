@@ -1,8 +1,16 @@
 // Runs one queue per hiring system, all systems side by side. Within a system, checks start at most
 // once every intervalMs (polite to each API), with up to `concurrency` in flight so slow answers
 // don't hold up the queue. A system stops after too many errors in a row (usually rate limiting);
-// everything stops taking new work at the deadline.
+// everything stops taking new work at the deadline. A check that hasn't settled after itemTimeoutMs
+// counts as an error and the worker moves on, so one hung request can't stall the run.
 export type QueueSummary = { done: number; errors: number; stopped: string | null };
+
+function withTimeout(p: Promise<{ error: boolean }>, ms?: number): Promise<{ error: boolean }> {
+  if (ms === undefined) return p;
+  let timer: ReturnType<typeof setTimeout>;
+  const timeout = new Promise<{ error: boolean }>((resolve) => (timer = setTimeout(() => resolve({ error: true }), ms)));
+  return Promise.race([p, timeout]).finally(() => clearTimeout(timer));
+}
 
 export async function runQueues<T>(
   queues: Record<string, T[]>,
@@ -12,6 +20,7 @@ export async function runQueues<T>(
     maxConsecutiveErrors: number;
     concurrency?: number;
     deadline?: number;
+    itemTimeoutMs?: number;
     perSystem?: Record<string, { intervalMs?: number; concurrency?: number }>; // overrides per system
   },
 ): Promise<Record<string, QueueSummary>> {
@@ -36,7 +45,7 @@ export async function runQueues<T>(
         nextStart = slot + intervalMs;
         if (slot > Date.now()) await sleep(slot - Date.now());
 
-        const { error } = await work(system, item);
+        const { error } = await withTimeout(work(system, item), opts.itemTimeoutMs);
         s.done++;
         if (error) {
           s.errors++;
